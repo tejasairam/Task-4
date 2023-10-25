@@ -1,0 +1,147 @@
+import random
+import time
+
+def welcome_message():
+    print("Welcome to Text-Based Adventure Game.\n")
+    time.sleep(3)
+    print("You are in the middle of the forest.\n")
+    time.sleep(2)
+    print("Get ready for the adventure.....!\n")
+    print()
+
+def choose_direction():
+    print("You have two directions to go.\n")
+    print("1.left\n2.right\n")
+    initc = int(input("Enter your choice : "))
+    return initc
+
+def encounter_tiger():
+    print("you are encountered with a tiger.\n")
+    print("1.Fight with the tiger\n2.Run away from the tiger.\n")
+    c2 = int(input("Enter your choice : "))
+    return c2
+
+def fight_tiger():
+    r = random.choice([0, 1])
+    if r == 0:
+        print("Tiger is more powerful and you lost the game.\n")
+        return False
+    else:
+        print("Wow!,You defeated the tiger and you won the battle\n")
+        return True
+
+def continue_path():
+    print("1.Continue to path.\n2.Take rest\n")
+    ct = int(input("Enter your choice : "))
+    if ct == 1:
+        print("There is a large river in front of you.\n")
+        print("1.Swim over the river.\n2.Use boat.\n")
+        c = int(input("Enter your choice : "))
+        if c == 1:
+            print("There are some crocodiles are there\nyou are defeated by them\nYou lost the game\n\n")
+            return False
+        elif c == 2:
+            print("Safely reached the other end of river.\n")
+            print("You reached the final point\n")
+            print("You are now out of the forest\nYou won the game\n")
+            return True
+    elif ct == 2:
+        time.sleep(5)
+        print("Rest is enough for you continue your walk now!\n")
+        time.sleep(2)
+        print("You encountered with a bear.\n")
+        print("1.Fight with the bear.\n2.Stand alone\n")
+        h = int(input("Enter your choice : "))
+        if h == 1:
+            print("Bear is stronger than you and you lost the game.\n")
+            return False
+        elif h == 2:
+            print("Bear thought that it is a statue and it moves away from you.\n")
+            print("Continue to your path.\n")
+            time.sleep(3)
+            print("You reached out of forest.\nYou won the game.\n")
+            return True
+        else:
+            print("Invalid input given\n")
+            print("Game over.\n")
+            return False
+
+def run_away():
+    print("You ran away from the tiger.\n")
+    print("But, You lost the route.\n")
+    print("1.Search for people.\n2.Sit There.\n")
+    ch = int(input("Enter your choice : "))
+    if ch == 1:
+        print("There are some people in that path.\n")
+        print("Safely reached out of the forest.\nYou won the game.\n")
+        return True
+    elif ch == 2:
+        print("Your energy levels are down and you died\nYou lost the game.\n")
+        return False
+    else:
+        print("Invalid input given\n")
+        print("Game over.\n")
+        return False
+
+def encounter_forest_people():
+    print("You are encountered with forest people.\n")
+    print("1.Ask for help\n2.Stay there for some time\n")
+    st = int(input("Enter your choice : "))
+    if st == 1:
+        print("They helped you to reach up to some extent.\n")
+        time.sleep(2)
+        print("You encountered with a monkey\n")
+        print("1.Run away from the monkey.\n2.Fight with monkey.\n")
+        run = int(input("Enter your choice : "))
+        if run == 1:
+            print("You are out of danger and you are out of the forest also.\nYou won the game.\n")
+            return True
+        elif run == 2:
+            print("More monkeys come and they attacked you\nLost the game.\n")
+            return False
+        else:
+            print("Invalid input given\n")
+            print("Game over.\n")
+            return False
+    elif st == 2:
+        time.sleep(4)
+        print("They serve you a good lunch and give a map to go out of the forest.\n")
+        time.sleep(3)
+        print("You are out of the forest\nyou won the game\n")
+        return True
+    else:
+        print("Invalid input given\n")
+        print("Game over.\n")
+        return False
+
+def play_game():
+    welcome_message()
+    direction = choose_direction()
+    
+    if direction == 1:
+        choice = encounter_tiger()
+        if choice == 1:
+            if fight_tiger():
+                if continue_path():
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        elif choice == 2:
+            if run_away():
+                return True
+            else:
+                return False
+        else:
+            return False
+    elif direction == 2:
+        if encounter_forest_people():
+            return True
+        else:
+            return False
+    else:
+        return False
+
+# Call the function to start the game
+play_game()
